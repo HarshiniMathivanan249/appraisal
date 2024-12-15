@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+    
+        h2 {
+            font-size: 2.5em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 700px;
+        }
+    
+        label {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 8px;
+        }
+    
+        select, input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+    
+        select:focus, input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(0, 128, 0, 0.2);
+        }
+    
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #45a049;
+        }
+    
+        #hrQuestions {
+            margin-top: 25px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    
+        #hrQuestions h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+    
+        #popupMessage {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+        }
+    
+        #popupMessage h3 {
+            color: #4CAF50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+    
+        #popupMessage ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        #popupMessage ul li {
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+    
+        #popupMessage button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        #popupMessage button:hover {
+            background-color: #45a049;
+        }
+    
+        /* Background overlay for popup */
+        #popupMessage:before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+    
+        /* Enhanced Button Style */
+        button {
+            font-weight: bold;
+        }
+    
+        /* Small screen adjustments */
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+                max-width: 100%;
+            }
+    
+            label, select, input[type="text"], input[type="email"], button {
+                font-size: 1em;
+            }
+    
+            #popupMessage {
+                width: 80%;
+                padding: 20px;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <img src="images.png" alt="GIRI Logo" style="max-width: 150px; height: auto;">
+    </div>
+    
+    <h2>Employee Data  Form</h2>
+   
+    <form id="myForm" action="https://script.google.com/macros/s/AKfycbyzTsk1748aISAR9lQdGh0OB89pxTyyaVZIaOrGAsFTRZscirUNX1hJVsu-Sq_4uEsr1w/exec" method="post" onsubmit="handleSubmit(event)">
+        <label for="department">Select Department:</label>
+        <select id="department" name="department">
+            <option value="">Select Department</option>
+            <option value="IT">IT</option>
+            <option value="Accounts">Accounts</option>
+            <option value="Digital">Digital</option>
+            <option value="Warehouse">Warehouse</option>
+        </select>
+        <br><br>
+
+        <label for="manager">Select Manager:</label>
+        <select id="manager" name="manager" disabled>
+            <option value="">Select Manager</option>
+        </select>
+        <br><br>
+
+        <label for="employee">Select Employee:</label>
+        <select id="employee" name="employee" disabled>
+            <option value="">Select Employee</option>
+        </select>
+        <br><br>
+
+        <div id="hrQuestions" style="display:none;">
+            <h3>HR Questions:</h3>
+            <p><strong>How do you handle stress at work?</strong></p>
+            <input type="text" id="stressManagement" name="stressManagement" placeholder="Your answer here...">
+            <br><br>
+            <p><strong>What are your long-term career goals?</strong></p>
+            <input type="text" id="careerGoals" name="careerGoals" placeholder="Your answer here...">
+            <br><br>
+            <p><strong>How punctual is the employee?</strong></p>
+            <input type="text" id="punctuality" name="punctuality" placeholder="Your answer here...">
+            <br><br>
+  
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Popup Message -->
+    <div id="popupMessage">
+        <h3>Successfully Submitted!</h3>
+        <ul>
+            <li><button onclick="fillOneMore()">Fill One More</button></li>
+            <li><button onclick="finishForm()">Thank You, Finish</button></li>
+        </ul>
+    </div>
+
+    <script>
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();  // Prevent the default form submission
+            const form = document.getElementById("myForm");
+
+            // Submit the form using Fetch API
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form)
+            })
+            .then(response => {
+                if (response.ok) {
+                    showPopup(); // Show success popup
+                    form.reset(); // Reset the form after submission
+                } else {
+                    alert("Submission failed. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error submitting the form:", error);
+                alert("An error occurred. Please try again.");
+            });
+        }
+
+        // Show the success popup
+        function showPopup() {
+            document.getElementById("popupMessage").style.display = "block";
+        }
+
+        // Reset the form for a new entry
+        function fillOneMore() {
+            document.getElementById("myForm").reset();
+            document.getElementById("popupMessage").style.display = "none";
+        }
+
+        // Finish the form submission and exit
+        function finishForm() {
+            document.getElementById("popupMessage").style.display = "none";
+            alert("Thank you for your submission!");
+        }
+
+        // Handle department and manager selection
+        document.getElementById("department").addEventListener("change", function() {
+            const department = this.value;
+            const managerSelect = document.getElementById("manager");
+            const employeeSelect = document.getElementById("employee");
+            const hrQuestions = document.getElementById("hrQuestions");
+
+            managerSelect.innerHTML = '<option value="">Select Manager</option>';
+            employeeSelect.innerHTML = '<option value="">Select Employee</option>';
+            hrQuestions.style.display = "none";
+
+            if (department) {
+                managerSelect.disabled = false;
+                const managers = getManagersByDepartment(department);
+                managers.forEach(manager => {
+                    const option = document.createElement("option");
+                    option.value = manager.name;
+                    option.textContent = manager.name;
+                    managerSelect.appendChild(option);
+                });
+            } else {
+                managerSelect.disabled = true;
+                employeeSelect.disabled = true;
+            }
+        });
+
+        document.getElementById("manager").addEventListener("change", function() {
+            const manager = this.value;
+            const employeeSelect = document.getElementById("employee");
+            const hrQuestions = document.getElementById("hrQuestions");
+
+            employeeSelect.innerHTML = '<option value="">Select Employee</option>';
+            hrQuestions.style.display = "none";
+
+            if (manager) {
+                employeeSelect.disabled = false;
+                const employees = getEmployeesByManager(manager);
+                employees.forEach(employee => {
+                    const option = document.createElement("option");
+                    option.value = employee.name;
+                    option.textContent = employee.name;
+                    employeeSelect.appendChild(option);
+                });
+            } else {
+                employeeSelect.disabled = true;
+            }
+        });
+
+        document.getElementById("employee").addEventListener("change", function() {
+            const employee = this.value;
+            const hrQuestions = document.getElementById("hrQuestions");
+
+            if (employee) {
+                hrQuestions.style.display = "block";
+            } else {
+                hrQuestions.style.display = "none";
+            }
+        });
+
+        function getManagersByDepartment(department) {
+    const data = {
+        IT: [
+            { name: "1. Priyanka (IT-Software)" },
+            { name: "2. Ellapan (IT-Hardware)" }
+        ],
+        Accounts: [{ name: "Alice Brown" }, { name: "Bob Green" }],
+        Digital: [
+            { name: "1. Vignesh (SEO)" },
+            { name: "2. Karthikeyan (SMO)" }
+        ],
+        Warehouse: [{ name: "Eve Blue" }, { name: "Frank Yellow" }]
+    };
+    return data[department] || [];
+}
+
+
+function getEmployeesByManager(manager) {
+    const data = {
+        "1. Priyanka (IT-Software)": [
+            { name: "Harshini" },
+            { name: "Janani" }
+        ],
+        "2. Ellapan (IT-Hardware)": [
+            { name: "Liam N" },
+            { name: "Eva O" }
+        ],
+        "1. Vignesh (SEO)": [
+            { name: "Hariharan" },
+            { name: "Ragupathy" },
+            { name: "Subhashini" }
+        ],
+        "2. Karthikeyan (SMO)": [
+            { name: "Keerthana" },
+            { name: "Samyuktha" },
+            { name: "Yuvaraj" },
+            { name: "Kaviarasan" }
+        ],
+        "Alice Brown": [{ name: "Tom H" }, { name: "Jerry L" }],
+        "Bob Green": [{ name: "Nina K" }, { name: "Owen M" }],
+        "Charlie Black": [{ name: "Liam N" }, { name: "Eva O" }],
+        "David White": [{ name: "Grace P" }, { name: "Sean Q" }],
+        "Eve Blue": [{ name: "Lily R" }, { name: "Chris S" }],
+        "Frank Yellow": [{ name: "Matt T" }, { name: "Nancy U" }]
+    };
+    return data[manager] || [];
+}
+
+    </script>
+</body>
+</html>
