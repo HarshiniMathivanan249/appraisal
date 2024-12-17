@@ -210,6 +210,59 @@ h2 {
         font-size: 1.3em;
     }
 }
+     /* Footer Styling */
+     .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #2E8B40;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            color: #2E8B40;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            color: #256A2E;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            a.button {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .footer {
+                font-size: 12px;
+            }
+        }
+
+
 
 
     </style>
@@ -870,5 +923,10 @@ h2 {
             document.getElementById('popup').classList.remove('active');
         }
     </script>
+
+<div class="footer">
+    Developed by 
+    <a href="https://www.linkedin.com/in/harshini-mathivanan-52412624a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Harshini Mathivanan</a>
+</div>
 </body>
 </html>
