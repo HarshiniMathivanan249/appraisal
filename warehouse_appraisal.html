@@ -14,42 +14,49 @@
         }
 
         body {
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #c8f2d0, #90d8a3);
-            padding: 10px;
+            height: 100vh;
+            background: linear-gradient(135deg, #C8F2D0, #90D8A3); /* Gradient background */
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            flex-direction: column; 
         }
 
-        .container {
-            background: #2e8b40;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
+
+           /* Container styling */
+           .container {
+            background: #2E8B40; /* Dark green */
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            animation: fadeIn 1.2s ease-in-out; /* Fade-in animation */
         }
 
         a.button {
-            display: block;
+            padding: 20px;
             text-align: center;
-            padding: 15px;
-            color: #fff;
-            font-size: 16px;
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 18px;
             text-decoration: none;
-            border-bottom: 1px solid #256a2e;
-            transition: all 0.3s ease;
+            display: block;
+            border-bottom: 1px solid #256A2E;
+            transition: all 0.3s ease-in-out; /* Smooth transition */
+            letter-spacing: 1px;
         }
 
         a.button:last-child {
-            border-bottom: none;
+            border-bottom: none; /* Remove bottom border for the last button */
         }
-
         a.button:hover {
-            background: #256a2e;
-            color: #ffd700;
-            transform: scale(1.02);
+            background: #256A2E; /* Darker green on hover */
+            color: #FFD700; /* Gold text on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hover shadow */
         }
 
         /* Popup Styling */
@@ -74,7 +81,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             width: 100%;
-            max-width: 500px;
+            max-width: 1000px;
             overflow-y: auto;
             max-height: 90vh;
         }
